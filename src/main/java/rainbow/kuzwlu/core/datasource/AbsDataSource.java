@@ -23,5 +23,4 @@ public abstract class AbsDataSource {
     private Long minEvictableIdleTimeMillis = 300000L;
     private String validationQuery = "SELECT 1 FROM DUAL";
 
-
 }
