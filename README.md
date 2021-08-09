@@ -9,7 +9,7 @@
     通过配置文件添加数据源
     通过指定数据库和指定表字段添加数据源
     
-## 使用方法：
+## 使用方法：（可见sqlRun项目：https://github.com/kuzwlu/sqlRun）
  #### 1、引入依赖包（本地依赖库路径：rainbow/kuzwlu/）
     <dependency>
             <groupId>rainbow.kuzwlu</groupId>
