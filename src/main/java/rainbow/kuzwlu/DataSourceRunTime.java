@@ -80,8 +80,19 @@ public class DataSourceRunTime {
      * @return
      */
     public DBInfo registerSQLTool(DBTypeEnum dbTypeEnum, SQLStatement sqlStatement) {
+        return registerSQLTool(dbTypeEnum,new SQLTool(sqlStatement));
+    }
+
+    /**
+     * 注册一个SQLTool
+     *
+     * @param dbTypeEnum
+     * @param sqlTool
+     * @return
+     */
+    public DBInfo registerSQLTool(DBTypeEnum dbTypeEnum, SQLTool sqlTool) {
         if (!this.sqlToolMap.containsKey(dbTypeEnum.getValue())) {
-            sqlToolMap.put(dbTypeEnum.getValue(), new SQLTool(sqlStatement));
+            sqlToolMap.put(dbTypeEnum.getValue(), sqlTool);
         }
         return sqlToolMap.get(dbTypeEnum.getValue());
     }
@@ -94,8 +105,19 @@ public class DataSourceRunTime {
      * @return
      */
     public DBInfo registerSQLTool(String dbTypeName, SQLStatement sqlStatement) {
+        return registerSQLTool(dbTypeName,new SQLTool(sqlStatement));
+    }
+
+    /**
+     * 注册一个SQLTool
+     *
+     * @param dbTypeName
+     * @param sqlTool
+     * @return
+     */
+    public DBInfo registerSQLTool(String dbTypeName, SQLTool sqlTool) {
         if (!this.sqlToolMap.containsKey(dbTypeName)) {
-            sqlToolMap.put(dbTypeName, new SQLTool(sqlStatement));
+            sqlToolMap.put(dbTypeName, sqlTool);
         }
         return sqlToolMap.get(dbTypeName);
     }

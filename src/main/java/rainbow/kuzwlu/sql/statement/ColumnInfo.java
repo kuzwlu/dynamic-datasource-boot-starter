@@ -21,7 +21,7 @@ public interface ColumnInfo {
      * key：注释
      * value：字段名
      */
-    default void clearColumnInfoMap() {
+    default void clearColumnInfoMap(){
         columnInfoMap.clear();
     }
 
