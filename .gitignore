@@ -1,5 +1,6 @@
-target
+target/
 *.iml
-/.idea/
-/cache/
+.idea/
+cache/
 dynamic-datasource-boot-starter.iml
+.gradle/
