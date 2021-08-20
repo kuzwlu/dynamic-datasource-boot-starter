@@ -156,6 +156,24 @@ public class DataSourceRunTime {
     }
 
     /**
+     * 获取单个数据源
+     * @param dbTypeEnum
+     * @return
+     */
+    public DataSource getDataSource(DBTypeEnum dbTypeEnum){
+        return getDataSource(dbTypeEnum.getValue());
+    }
+
+    /**
+     * 获取单个数据源
+     * @param dataSourceName
+     * @return
+     */
+    public DataSource getDataSource(String dataSourceName){
+        return DynamicDataSource.switchKeyDataSourceMap(dataSourceName);
+    }
+
+    /**
      * 获取全部数据源
      *
      * @return
