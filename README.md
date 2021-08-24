@@ -56,7 +56,7 @@
             driverClassName: com.mysql.cj.jdbc.Driver
             url: jdbc:mysql://localhost:3306/sql?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=Asia/Shanghai
             username: root
-            password: 20001102zzw
+            password: root
             initialSize: 5
             minIdle: 5
             maxActive: 20
@@ -71,7 +71,7 @@
           #副---未声明则数据库的数据源数据不生效，如果type为NONE可以不填写subsidiary
           subsidiary: sqls,postgresql,test2
           sqls:
-            # mysql默认数据库的配置
+            # mysql数据库的配置
             driverClassName: com.mysql.cj.jdbc.Driver
             url: jdbc:mysql://localhost:3306/sqls?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=Asia/Shanghai
             username: sqls
@@ -87,11 +87,11 @@
             minEvictableIdleTimeMillis: 300000
             validationQuery: SELECT 1 FROM DUAL
           postgresql:
-            # mysql默认数据库的配置
+            # postgresql数据库配置
             driverClassName: org.postgresql.Driver
             url: jdbc:postgresql://localhost:5432/postgres
             username: postgres
-            password: 20001102zzw
+            password: root
             initialSize: 5
             minIdle: 5
             maxActive: 20
