@@ -1,9 +1,9 @@
 package rainbow.kuzwlu.sql;
 
-import com.alibaba.druid.pool.DruidAbstractDataSource;
 import lombok.extern.slf4j.Slf4j;
 import rainbow.kuzwlu.core.datasource.DynamicDataSource;
 import rainbow.kuzwlu.exception.SqlException;
+import rainbow.kuzwlu.sql.model.PrepareCallModel;
 import rainbow.kuzwlu.sql.statement.SQLStatement;
 
 import javax.sql.DataSource;
@@ -84,6 +84,8 @@ public class SQLTool implements DBInfo {
         }
         return valuesList;
     }
+
+
 
     @Override
     public int executeUpdate(String sql, String dataSourceName) {
@@ -239,6 +241,43 @@ public class SQLTool implements DBInfo {
         return resultList;
     }
 
+    /**
+     * 添加方法执行  2021.8.25
+     * @param dataSourceName
+     * @param sql
+     * @param prepareCallModel
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public List functionExec(String dataSourceName,String sql, PrepareCallModel prepareCallModel) throws SQLException {
+        DataSource dataSource =  getDataSource(dataSourceName);
+        CallableStatement prepareCall = dataSource.getConnection().prepareCall(sql);
+        prepareCallModel.getOutParameterMap().forEach((key, value) ->{
+            try {
+                prepareCall.registerOutParameter(key, value);
+            } catch (SQLException e) {
+                throw new SqlException("registerOutParameter出错!");
+            }
+        });
+        prepareCallModel.getInParameterMap().forEach((key, value) ->{
+            try {
+                prepareCall.setObject(key, value);
+            } catch (SQLException e) {
+                throw new SqlException("setObject出错!");
+            }
+        });
+        prepareCall.execute();
+        List result = new LinkedList<>();
+        prepareCallModel.getOutParameterMap().forEach((key, value) ->{
+            try {
+                result.add(prepareCall.getObject(key));
+            } catch (SQLException e) {
+                throw new SqlException("获取结果出错!");
+            }
+        });
+        return result;
+    }
 
     private DataSource getDataSource(String dataSourceName) {
         DataSource dataSource = DynamicDataSource.switchKeyDataSourceMap(dataSourceName);
@@ -265,5 +304,7 @@ public class SQLTool implements DBInfo {
             }
         }
     }
+
+
 
 }

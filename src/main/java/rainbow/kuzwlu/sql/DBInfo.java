@@ -1,5 +1,8 @@
 package rainbow.kuzwlu.sql;
 
+import rainbow.kuzwlu.sql.model.PrepareCallModel;
+
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +39,8 @@ public interface DBInfo {
      * @return int
      */
     int executeUpdate(String sql, String dataSourceName);
+
+
 
     /**
      * 从数据源中获取表名
@@ -80,5 +85,7 @@ public interface DBInfo {
      * @return List<List<Map<String, Object>>>
      */
     List<List<Map<String, Object>>> getValues(List<String> tableNames, String dataSourceName);
+
+    List functionExec(String dataSourceName,String sql, PrepareCallModel prepareCallModel) throws SQLException;
 
 }
