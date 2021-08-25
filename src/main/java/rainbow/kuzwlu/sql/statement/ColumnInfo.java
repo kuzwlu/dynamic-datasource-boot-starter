@@ -35,6 +35,8 @@ public interface ColumnInfo {
      * key：注释
      * value：字段名
      */
-    Map<String, String> getColumnInfoMap();
+    default Map<String, String> getColumnInfoMap(){
+        return columnInfoMap;
+    };
 
 }
