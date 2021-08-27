@@ -4,6 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionManager;
+import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 import rainbow.kuzwlu.core.datasource.DynamicDataSource;
 import rainbow.kuzwlu.enums.DataSourceEnum;
 import rainbow.kuzwlu.enums.DataSourceType;
@@ -24,17 +28,22 @@ import java.util.*;
  */
 @Configuration
 @Slf4j
-public class DataSourceConfig {
+public class DataSourceConfig implements TransactionManagementConfigurer{
 
     @Resource
     private EnvironmentProperties environmentProperties;
 
     @Bean(name = "dataSource")
     @Primary
-    public DataSource dataSource() throws Exception {
+    public DataSource dataSource() {
         DynamicDataSource dynamicDataSource = new DynamicDataSource();
         DataSource masterDataSource = initMasterDataSource();
-        Map<String, DataSource> dataSourceMap = initSubsidiaryDataSource();
+        Map<String, DataSource> dataSourceMap = null;
+        try {
+            dataSourceMap = initSubsidiaryDataSource();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         dataSourceMap.put("master", masterDataSource);
         DynamicDataSource.setMasterDataSource(masterDataSource);
         DynamicDataSource.setDataSourceMap(dataSourceMap);
@@ -149,5 +158,14 @@ public class DataSourceConfig {
         return subsidiaryDataSourceMap;
     }
 
+    @Bean(name = "txManager")
+    public PlatformTransactionManager txManager() {
+        return new DataSourceTransactionManager(dataSource());
+    }
+
+    @Override
+    public TransactionManager annotationDrivenTransactionManager() {
+        return txManager();
+    }
 }
 
