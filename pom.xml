@@ -32,6 +32,7 @@
         <lombok.version>1.18.16</lombok.version>
         <mysql.version>8.0.22</mysql.version>
         <postgresql.version>42.2.18</postgresql.version>
+        <aspectj.version>1.9.7</aspectj.version>
     </properties>
 
     <dependencies>
@@ -69,6 +70,18 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgresql.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId> org.aspectj</groupId >
+            <artifactId> aspectjweaver</artifactId >
+            <version>${aspectj.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <version>${spring.boot.version}</version>
         </dependency>
 
     </dependencies>

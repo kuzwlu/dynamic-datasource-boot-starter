@@ -16,6 +16,10 @@
             <artifactId>dynamic-datasource-boot-starter</artifactId>
             <version>1.2</version>
     </dependency>
+    <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+    </dependency>
 #### 2、application.yml配置示例
     rainbow:
         kuzwlu:
