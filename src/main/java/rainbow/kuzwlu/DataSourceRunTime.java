@@ -6,6 +6,7 @@ import rainbow.kuzwlu.enums.DBTypeEnum;
 import rainbow.kuzwlu.sql.DBInfo;
 import rainbow.kuzwlu.sql.SQLTool;
 import rainbow.kuzwlu.sql.statement.MysqlStatement;
+import rainbow.kuzwlu.sql.statement.OracleStatement;
 import rainbow.kuzwlu.sql.statement.PostgresqlPublicStatement;
 import rainbow.kuzwlu.sql.statement.SQLStatement;
 
@@ -37,6 +38,7 @@ public class DataSourceRunTime {
     private DataSourceRunTime() {
         sqlToolMap.put(DBTypeEnum.MYSQL.getValue(), new SQLTool(new MysqlStatement()));
         sqlToolMap.put(DBTypeEnum.POSTGRESQL.getValue(),new SQLTool(new PostgresqlPublicStatement()));
+        sqlToolMap.put(DBTypeEnum.ORACLE.getValue(),new SQLTool(new OracleStatement()));
     }
 
     public static DataSourceRunTime getRuntime() {
