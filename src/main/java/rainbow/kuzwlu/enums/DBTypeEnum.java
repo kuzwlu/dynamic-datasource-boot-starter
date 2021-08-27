@@ -10,7 +10,9 @@ public enum DBTypeEnum {
 
     MYSQL("mysql"),
 
-    POSTGRESQL("postgresql");
+    POSTGRESQL("postgresql"),
+
+    ORACLE("oracle");
 
     private String value;
 
