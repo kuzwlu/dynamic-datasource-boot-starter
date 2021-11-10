@@ -1,5 +1,6 @@
 package rainbow.kuzwlu;
 
+import org.springframework.stereotype.Component;
 import rainbow.kuzwlu.core.config.EnvironmentProperties;
 import rainbow.kuzwlu.core.datasource.DynamicDataSource;
 import rainbow.kuzwlu.enums.DBTypeEnum;
@@ -21,6 +22,7 @@ import java.util.Map;
  * @Date 2020/12/18 16:56
  * @Email kuzwlu@gmail.com
  */
+@Component
 public class DataSourceRunTime {
 
     @Resource

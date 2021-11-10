@@ -85,6 +85,7 @@ class DataSourceAdvice implements MethodInterceptor {
 
         } else {
             //获取到接口上的@DataSource注解
+            //忘记ProxyFactory，好像是springboot的代理
             Object target = methodInvocation.getThis();
             Assert.notNull(target, dataSourceException.getMessage());
             ProxyFactory proxyFactory = new ProxyFactory(target);
